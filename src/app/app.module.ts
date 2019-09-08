@@ -7,6 +7,7 @@ import { StartPageComponent } from './start-page/start-page.component';
 import { TestPageComponent } from './test-page/test-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { QuestionComponent } from './test-page/question/question.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { QuestionComponent } from './test-page/question/question.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
   ],
   providers: [],
