@@ -7,10 +7,34 @@ import {Question} from './question';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
-  @Input() question: Question;
-  constructor() { }
+  private _question: Question;
+  private width = 1;
+  private widthPercent: string;
+  private interval;
+
+  @Input()
+  set question(question: Question) {
+    clearInterval(this.interval);
+    this.widthPercent = null;
+    this.width = 1;
+    this._question = question;
+    this.interval = setInterval(() => {
+      this.frame();
+    }, 100);
+  }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  frame() {
+    if (this.width >= 100  ) {
+      console.log('killed');
+      clearInterval(this.interval);
+    } else {
+      this.width  += 10 / parseInt(this._question.time, 10);
+      this.widthPercent = `${this.width}%`;
+    }
+  }
 }
