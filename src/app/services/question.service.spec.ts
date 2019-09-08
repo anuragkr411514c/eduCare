@@ -9,4 +9,10 @@ describe('QuestionService', () => {
     const service: QuestionService = TestBed.get(QuestionService);
     expect(service).toBeTruthy();
   });
+  it('shoudl get the data', () => {
+    const service: QuestionService = TestBed.get(QuestionService);
+    service.getQuestions(1).subscribe(questions => {
+      console.log(questions);
+    });
+  });
 });

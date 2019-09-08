@@ -8,6 +8,7 @@ import { TestPageComponent } from './test-page/test-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { QuestionComponent } from './test-page/question/question.component';
 import {HttpClientModule} from '@angular/common/http';
+import {QuestionService} from './services/question.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [QuestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
