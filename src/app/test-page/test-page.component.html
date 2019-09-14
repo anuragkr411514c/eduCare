@@ -1,2 +1,12 @@
-<div><h6>Questions : {{i+1}}/{{questions.length}}</h6></div>
+<div class="d-flex flex-row-reverse bd-highlight" style="margin-right: 3%">
+  <div class="p-2 bd-highlight">
+    {{i+1}}/{{questions.length}}
+  </div>
+  <div class="p-2 bd-highlight" *ngIf="answer">
+    Answers :
+  </div>
+  <div class="p-2 bd-highlight" *ngIf="!answer">
+    Questions :
+  </div>
+</div>
 <app-question *ngIf="questions" [question]=question [answer]=answer></app-question>
