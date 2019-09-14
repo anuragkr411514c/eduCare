@@ -1,12 +1,14 @@
 .start-background{
-  background-image: url("../../assets/Asset.svg");
   background-size: cover;
-  background-position:  center center;
+}
+.back{
+  background-image: url("../../assets/Asset.svg");
+}
+.jumbotron{
+  text-align:left;
+  height: 100vh;
 }
 
-.jumbotron{
-  text-align:center;
-}
 .jumbotron-margin{
   margin-bottom: 5%;
   margin-top: 5%;
