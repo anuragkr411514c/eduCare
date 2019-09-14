@@ -1,9 +1,7 @@
-<div class="card" style="width: 50%;">
-  <img [src]="_question.image" class="card-img-top" (alt)="_question.image">
-  <div class="card-body card-height">
-  <h5 class="card-title">Question</h5>
-    <p class="card-text">{{_question.question}}</p>
-  </div>
+<div class="jumbotron text-center">
+  <img [src]="_question.image" class="card-img-top card-height" (alt)="_question.image">
+  <h5 class="card-title text-center">Question</h5>
+    <p class="card-text text-center">{{_question.question}}</p>
   <div class="progress">
     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [ngStyle] = "{'width': widthPercent}"></div>
   </div>
