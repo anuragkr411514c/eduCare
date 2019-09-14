@@ -4,12 +4,18 @@
 .back{
   background-image: url("../../assets/Asset.svg");
 }
-.jumbotron{
+.jumbotron-class{
   text-align:left;
   height: 100vh;
+  margin-bottom: 0px;
 }
 
 .jumbotron-margin{
   margin-bottom: 5%;
   margin-top: 5%;
+}
+
+.sub-container-class{
+  text-align:left;
+max-width: 30%;
 }
