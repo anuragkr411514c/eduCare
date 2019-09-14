@@ -2,6 +2,10 @@
   <img [src]="_question.image" class="jumbotron-height rounded img-fluid" (alt)="_question.image">
   <h5 class="card-title text-center">Question</h5>
     <p class="card-text text-center">{{_question.question}}</p>
+  <div *ngIf="answer">
+    <h5 class="card-title text-center">Answer</h5>
+    <p class="card-text text-center">{{_question.answer}}</p>
+  </div>
   <div class="progress">
     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [ngStyle] = "{'width': widthPercent}"></div>
   </div>

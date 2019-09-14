@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 export class TestPageComponent implements OnInit {
   questions: Question[];
   question: Question;
+  answer: boolean;
   i = 0;
   constructor(private questionService: QuestionService, private router: Router) {
     this.questionService.getQuestions(1).subscribe( qs => {
@@ -23,20 +24,35 @@ export class TestPageComponent implements OnInit {
   ngOnInit() {
   }
   startTest() {
+    this.answer = false;
     this.question = this.questions[this.i];
     setTimeout(() => {
         this.i++;
         console.log(this.questions[this.i - 1].question);
         if ( this.i === this.questions.length) {
-          this.router.navigateByUrl('/').finally( () => {
-            console.log('test completed');
-            }
-          );
+          this.i = 0;
+          this.answer = true;
+          this.startAnswer();
         } else {
           this.startTest();
         }
-    }, parseInt(this.questions[this.i].time, 10) * 1000);
+    }, parseInt(this.questions[this.i].time, 10) * 500);
 
+  }
+  startAnswer() {
+    this.question = this.questions[this.i];
+    setTimeout(() => {
+      this.i++;
+      console.log(this.questions[this.i - 1].question);
+      if ( this.i === this.questions.length) {
+        this.router.navigateByUrl('/').finally( () => {
+            console.log('test completed');
+          }
+        );
+      } else {
+        this.startAnswer();
+      }
+    }, parseInt(this.questions[this.i].time, 10) * 500);
   }
 
 

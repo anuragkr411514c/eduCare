@@ -7,10 +7,14 @@ import {Question} from './question';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
-  private _question: Question;
+  // tslint:disable-next-line:variable-name
+  public _question: Question;
   private width = 1;
-  private widthPercent: string;
+  public widthPercent: string;
   private interval;
+
+  @Input()
+  public answer: boolean;
 
   @Input()
   set question(question: Question) {

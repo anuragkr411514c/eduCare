@@ -1,1 +1,2 @@
-<app-question *ngIf="questions" [question]=question></app-question>
+<div><h6>Questions : {{i+1}}/{{questions.length}}</h6></div>
+<app-question *ngIf="questions" [question]=question [answer]=answer></app-question>
