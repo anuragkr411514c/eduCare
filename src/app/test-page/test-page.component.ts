@@ -11,18 +11,32 @@ export class TestPageComponent implements OnInit {
   questions: Question[];
   question: Question;
   answer: boolean;
+  // tslint:disable-next-line:variable-name
+  question_placard: boolean;
+
+  message: string;
   i = 0;
   constructor(private questionService: QuestionService, private router: Router) {
+    this.question_placard = true;
     this.questionService.getQuestions(1).subscribe( qs => {
         console.log(qs);
         this.questions = qs;
-        this.startTest();
+        this.questionPlacard();
       }
     );
   }
 
   ngOnInit() {
   }
+
+  questionPlacard() {
+    this.message = 'questions will start in 5 seconds please be prepared';
+    setTimeout( () => {
+      this.question_placard = false;
+      this.startTest();
+    }, 5000);
+  }
+
   startTest() {
     this.answer = false;
     this.question = this.questions[this.i];
@@ -30,14 +44,22 @@ export class TestPageComponent implements OnInit {
         this.i++;
         console.log(this.questions[this.i - 1].question);
         if ( this.i === this.questions.length) {
-          this.i = 0;
-          this.answer = true;
-          this.startAnswer();
+          this.question_placard = true;
+          this.answerPlacard();
         } else {
           this.startTest();
         }
-    }, parseInt(this.questions[this.i].time, 10) * 500);
+    }, parseInt(this.questions[this.i].time, 10) * 1000);
 
+  }
+  answerPlacard() {
+    this.message = 'answers will start in 5 seconds please be prepared';
+    setTimeout( () => {
+      this.question_placard = false;
+      this.i = 0;
+      this.answer = true;
+      this.startAnswer();
+    }, 5000);
   }
   startAnswer() {
     this.question = this.questions[this.i];
@@ -52,7 +74,7 @@ export class TestPageComponent implements OnInit {
       } else {
         this.startAnswer();
       }
-    }, parseInt(this.questions[this.i].time, 10) * 500);
+    }, parseInt(this.questions[this.i].time, 10) * 1000);
   }
 
 
