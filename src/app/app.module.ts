@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { QuestionComponent } from './test-page/question/question.component';
 import {HttpClientModule} from '@angular/common/http';
 import {QuestionService} from './services/question.service';
+import { PlacardComponent } from './test-page/placard/placard.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {QuestionService} from './services/question.service';
     StartPageComponent,
     TestPageComponent,
     NavbarComponent,
-    QuestionComponent
+    QuestionComponent,
+    PlacardComponent
   ],
   imports: [
     BrowserModule,

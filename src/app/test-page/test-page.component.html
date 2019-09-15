@@ -1,3 +1,5 @@
+<app-placard *ngIf="question_placard" [message]="message"></app-placard>
+<div *ngIf="questions&&!question_placard">
 <div class="d-flex flex-row-reverse bd-highlight" style="margin-right: 3%">
   <div class="p-2 bd-highlight">
     {{i+1}}/{{questions.length}}
@@ -9,4 +11,5 @@
     Questions :
   </div>
 </div>
-<app-question *ngIf="questions" [question]=question [answer]=answer></app-question>
+<app-question [question]=question [answer]=answer></app-question>
+</div>
