@@ -9,10 +9,13 @@
   <div class="container text-center col-md-4  margin-tron col-xs-12 d-inline">
 
     <div id="questionJumbo" class=" text-center">
-      <h6 class="card-title text-center">Question</h6>
+      <h6 class="card-title text-left">Question:</h6>
       <h4 class="card-text text-center">{{_question.question}}</h4>
+
       <div *ngIf="answer">
-        <h6 class="card-title text-center">Answer</h6>
+        <hr>
+
+        <h6 class="card-title text-left">Answer:</h6>
         <h5 class="card-text text-center">{{_question.answer}}</h5>
       </div>
     </div>
