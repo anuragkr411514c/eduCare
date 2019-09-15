@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {QuestionService} from '../services/question.service';
 import {Question} from './question/question';
 import {Router} from '@angular/router';
+import {Observable, Subscription} from 'rxjs';
 @Component({
   selector: 'app-test-page',
   templateUrl: './test-page.component.html',
@@ -18,22 +19,23 @@ export class TestPageComponent implements OnInit {
   i = 0;
   constructor(private questionService: QuestionService, private router: Router) {
     this.question_placard = true;
-    this.questionService.getQuestions(1).subscribe( qs => {
-        console.log(qs);
-        this.questions = qs;
-        this.questionPlacard();
-      }
-    );
+    const o = this.questionService.getQuestions(1)
+    this.questionPlacard(o);
   }
 
   ngOnInit() {
   }
 
-  questionPlacard() {
+  questionPlacard(o: Observable<Question[]>) {
     this.message = 'questions will start in 5 seconds please be prepared';
     setTimeout( () => {
-      this.question_placard = false;
-      this.startTest();
+      o.subscribe( qs => {
+         console.log(qs);
+         this.questions = qs;
+         this.startTest();
+         this.question_placard = false;
+        }
+      );
     }, 5000);
   }
 
@@ -44,8 +46,8 @@ export class TestPageComponent implements OnInit {
         this.i++;
         console.log(this.questions[this.i - 1].question);
         if ( this.i === this.questions.length) {
-          this.question_placard = true;
           this.answerPlacard();
+          this.question_placard = true;
         } else {
           this.startTest();
         }
@@ -67,14 +69,23 @@ export class TestPageComponent implements OnInit {
       this.i++;
       console.log(this.questions[this.i - 1].question);
       if ( this.i === this.questions.length) {
-        this.router.navigateByUrl('/').finally( () => {
-            console.log('test completed');
-          }
-        );
+        this.endPlacard();
+        this.question_placard = true;
       } else {
         this.startAnswer();
       }
     }, parseInt(this.questions[this.i].time, 10) * 1000);
+  }
+  endPlacard() {
+    this.message = 'END OF QUIZ';
+    setTimeout( () => {
+      this.question_placard = false;
+      this.i = 0;
+      this.answer = true;
+      this.router.navigateByUrl('/').finally( () => {
+        console.log('test completed');
+      });
+    }, 5000);
   }
 
 
