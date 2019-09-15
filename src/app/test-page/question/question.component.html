@@ -1,13 +1,39 @@
-<div class="jumbotron text-center jumbotron-margin">
-  <img [src]="_question.image" class="jumbotron-height rounded img-fluid" (alt)="_question.image">
-  <h5 class="card-title text-center">Question</h5>
-    <p class="card-text text-center">{{_question.question}}</p>
-  <div *ngIf="answer">
-    <h5 class="card-title text-center">Answer</h5>
-    <p class="card-text text-center">{{_question.answer}}</p>
+<div class="row">
+
+  <div class="container col-md-8  margin-tron col-xs-12 d-inline">
+    <div class="text-center  border-right ">
+      <img [src]="_question.image" class="jumbotron-height rounded img-fluid" (alt)="_question.image">
+    </div>
   </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [ngStyle] = "{'width': widthPercent}"></div>
+
+  <div class="container text-center col-md-4  margin-tron col-xs-12 d-inline">
+
+    <div id="questionJumbo" class=" text-center">
+      <h6 class="card-title text-center">Question</h6>
+      <h4 class="card-text text-center">{{_question.question}}</h4>
+      <div *ngIf="answer">
+        <h6 class="card-title text-center">Answer</h6>
+        <h5 class="card-text text-center">{{_question.answer}}</h5>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row progress-bar-margin">
+  <div class="col-md-12 col-xs-12">
+    <div class="progress ">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+           aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': widthPercent}"></div>
+
+    </div>
+
   </div>
 </div>
+
+
+
+
+
 
