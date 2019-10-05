@@ -8,15 +8,17 @@ const routes: Routes = [
   {
     path: 'test',
     component: TestPageComponent,
+    data: {animation: 'testPage'}
   },
   {
     path: '',
     component: StartPageComponent,
+    data: {animation: 'homePage'}
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash: true})],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

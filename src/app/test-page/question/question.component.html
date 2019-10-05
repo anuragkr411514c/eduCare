@@ -1,12 +1,14 @@
-<div class="row">
-
-  <div class="container col-md-8  margin-tron col-xs-12 d-inline">
-    <div class="text-center  border-right ">
-      <img [src]="_question.image" class="jumbotron-height rounded img-fluid" (alt)="_question.image">
-    </div>
+<div class="row" [@questionAnimations]="_question.question">
+  <div class="container d-inline">
+    <h5 class="card-title text-center">Time Left: {{time}}s</h5>
   </div>
+  <!--<div class="container col-md-8  margin-tron col-xs-12 d-inline">
+    <div class="text-center  border-right ">
+      <img [src]="_question.imageUrl.src">
+    </div>
+  </div>-->
 
-  <div class="container text-center col-md-4  margin-tron col-xs-12 d-inline">
+  <div class="container text-center col-md-12  margin-tron col-xs-12 d-inline">
 
     <div id="questionJumbo" class=" text-center">
       <h6 class="card-title text-left">Question:</h6>
@@ -20,11 +22,26 @@
       </div>
     </div>
   </div>
-
+  <div class="questionTable container col-md-11 d-inline">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col" width="10%">#</th>
+      <th scope="col" class="text-left">Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let q of _question.options;index as i" [ngClass]="(_question.answer===q&&answer)?'bg-success':''">
+      <th scope="row" >{{i+1}}</th>
+      <td class="text-left">{{q}}</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
 </div>
 
 
-<div class="row progress-bar-margin">
+<!--<div class="row progress-bar-margin">
   <div class="col-md-12 col-xs-12">
     <div class="progress ">
       <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
@@ -33,7 +50,7 @@
     </div>
 
   </div>
-</div>
+</div>-->
 
 
 

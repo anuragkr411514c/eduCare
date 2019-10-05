@@ -3,6 +3,9 @@ import {QuestionService} from '../services/question.service';
 import {Question} from './question/question';
 import {Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-test-page',
   templateUrl: './test-page.component.html',
@@ -17,9 +20,9 @@ export class TestPageComponent implements OnInit {
 
   message: string;
   i = 0;
-  constructor(private questionService: QuestionService, private router: Router) {
+  constructor(private questionService: QuestionService, private router: Router, private http: HttpClient, private sanitizer: DomSanitizer) {
     this.question_placard = true;
-    const o = this.questionService.getQuestions(1)
+    const o = this.questionService.getQuestions(1);
     this.questionPlacard(o);
   }
 
@@ -28,14 +31,28 @@ export class TestPageComponent implements OnInit {
 
   questionPlacard(o: Observable<Question[]>) {
     this.message = 'questions will start in 5 seconds please be prepared';
+    let qss: Question[];
+    o.subscribe( qs => {
+      console.log(qs);
+      const list = ['ge', 'gh', 'be', 'bh'];
+      for (const q of qs) {
+        const img = new Image();
+        img.src = q.image;
+        q.imageUrl = img;
+        q.audioElement = new Array<HTMLAudioElement>();
+        for (const i of list) {
+          const ad = new Audio();
+          ad.src = '../../assets/' + i + '.mpeg';
+          ad.load();
+          q.audioElement.push( ad);
+        }
+      }
+      qss = qs;
+    });
     setTimeout( () => {
-      o.subscribe( qs => {
-         console.log(qs);
-         this.questions = qs;
+         this.questions = qss;
          this.startTest();
          this.question_placard = false;
-        }
-      );
     }, 5000);
   }
 

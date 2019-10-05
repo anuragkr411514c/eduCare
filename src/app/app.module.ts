@@ -10,6 +10,8 @@ import { QuestionComponent } from './test-page/question/question.component';
 import {HttpClientModule} from '@angular/common/http';
 import {QuestionService} from './services/question.service';
 import { PlacardComponent } from './test-page/placard/placard.component';
+import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,10 @@ import { PlacardComponent } from './test-page/placard/placard.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
   ],
   providers: [QuestionService],
   bootstrap: [AppComponent]

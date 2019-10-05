@@ -13,8 +13,15 @@
 
       <p class="sub-container-class text-success text-left">Edu Care is product in which new tests are rolled out everyday in order to help the candidate learn in a better and efficient way </p>
 
-    <div class="jumbotron-margin">
-      <button type="button" class="btn btn-soft-success btn-wide transition-3d-hover" routerLink="/test">
-        Start Test</button>
+    <div class="jumbotron-margin col-md-3">
+      <div class="input-group mb-2" >
+        <select class="custom-select"  [(ngModel)]="cls">
+          <option *ngFor="let cl of classes" [ngValue]="cl">{{cl.class}}</option>
+        </select>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-soft-success btn-wide transition-3d-hover" routerLink="/test">
+            Start Test</button>
+        </div>
+      </div>
     </div>
 </div>
