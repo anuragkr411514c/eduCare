@@ -7,4 +7,5 @@ export class GlobalsService {
 
   constructor() { }
   public Acsent: boolean;
+  public cls: string;
 }

@@ -6,6 +6,7 @@ import {Observable, Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {DomSanitizer} from '@angular/platform-browser';
+import {GlobalsService} from '../globals.service';
 @Component({
   selector: 'app-test-page',
   templateUrl: './test-page.component.html',
@@ -20,9 +21,10 @@ export class TestPageComponent implements OnInit {
 
   message: string;
   i = 0;
-  constructor(private questionService: QuestionService, private router: Router, private http: HttpClient, private sanitizer: DomSanitizer) {
+  constructor(private questionService: QuestionService, private globals: GlobalsService,
+              private router: Router) {
     this.question_placard = true;
-    const o = this.questionService.getQuestions(1);
+    const o = this.questionService.getQuestions(globals.cls);
     this.questionPlacard(o);
   }
 
@@ -34,15 +36,14 @@ export class TestPageComponent implements OnInit {
     let qss: Question[];
     o.subscribe( qs => {
       console.log(qs);
-      const list = ['ge', 'gh', 'be', 'bh'];
       for (const q of qs) {
         const img = new Image();
         img.src = q.image;
         q.imageUrl = img;
         q.audioElement = new Array<HTMLAudioElement>();
-        for (const i of list) {
+        for (const i of q.audio_urls) {
           const ad = new Audio();
-          ad.src = '../../assets/' + i + '.mpeg';
+          ad.src = i;
           ad.load();
           q.audioElement.push( ad);
         }

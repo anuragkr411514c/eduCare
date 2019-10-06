@@ -12,7 +12,7 @@ export class QuestionService {
     '/questions/incoming_webhook/question?question_id=';
 
   constructor(private http: HttpClient) { }
-  getQuestions(id: number): Observable<Question[]> {
-    return this.http.get<Question[]>(this.url + id.toString());
+  getQuestions(id: string): Observable<Question[]> {
+    return this.http.get<Question[]>(this.url + id);
   }
 }

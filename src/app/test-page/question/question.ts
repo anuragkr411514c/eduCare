@@ -7,6 +7,7 @@ export class Question {
   time: string;
   options: string[];
   imageUrl: HTMLImageElement;
-  audio: string[];
+  // tslint:disable-next-line:variable-name
+  audio_urls: string[];
   audioElement: HTMLAudioElement[];
 }

@@ -15,8 +15,8 @@
 
     <div class="jumbotron-margin col-md-3">
       <div class="input-group mb-2" >
-        <select class="custom-select"  [(ngModel)]="cls">
-          <option *ngFor="let cl of classes" [ngValue]="cl">{{cl.class}}</option>
+        <select class="custom-select"  [(ngModel)]="globals.cls">
+          <option *ngFor="let cl of classes" [ngValue]="cl.value">{{cl.class}}</option>
         </select>
         <div class="input-group-append">
           <button type="button" class="btn btn-soft-success btn-wide transition-3d-hover" routerLink="/test">
